@@ -1,0 +1,17 @@
+class Solution:
+    def countCharacters(self, words: List[str], chars: str) -> int:
+        
+        #dictionary must reset for each word
+        finSum = 0
+        for word in words:
+            isFlag = False
+            for letter in word:
+                #if the frequency of a lettre in current word is greater than within chars param --> break not possible
+                if word.count(letter) > chars.count(letter):
+                    isFlag = True
+                    break
+                    
+            if isFlag != True:
+                finSum += len(word)
+                
+        return finSum
