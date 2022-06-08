@@ -1,0 +1,38 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        '''
+        Steps:
+            1. Instantiate a hashmap with key as closing tag and value as open tag
+            2. Loop through string
+                If its a closing tag
+                    Check if value == top of stack and stack is not empty
+                        Remove Value from top of stack
+                    Else:
+                        return False --> not a valid string
+                Else:
+                    Add opening tag to stack
+                    
+                If stack empty --> Return True
+                Not empty --> Return False
+        '''
+        
+        hashmap = { ")":"(", "]":"[", "}":"{" }
+        stack = []
+        
+        for c in s:
+            #if closingTag
+            if c in hashmap:
+                #if corresponding open tag matches top of stack and stack is not empty
+                if hashmap[c] == stack[-1] and stack:
+                    stack.pop()
+                #if top of stack doesn't match or stack is empty
+                else:
+                    return False
+            else:
+                stack.append(c)
+                
+        if not stack:
+            return True
+        return False
+                
+        
