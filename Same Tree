@@ -1,0 +1,46 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        '''
+        Steps:
+            1. Identify Base Cases:
+                -if p and q are null --> True(same tree)
+                
+                -if p is null OR q is null --> False(not same tree)
+                
+                -if value of p is ever not equal to value of q --> False(not same tree)
+                
+            2. Recursively search left and right of tree and make sure they are same
+                -Will return True if same
+                -Will return False if different
+        '''
+        
+        #if p and q are both null --> return True
+        if not p and not q:
+            return True
+        
+        #if p or q is null --> return False
+        if not p or not q:
+            return False
+        
+        #if p and q are non empty
+        if p.val != q.val:
+            return False
+        
+        return (self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right))
+        
+        '''
+        Base Case:
+            If both heads are null --> return true
+            
+            
+            
+        Time Complexity: O(p + q)
+        '''
+        
+        
