@@ -1,0 +1,43 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        '''
+        Steps:
+            1. While curr node is not null or stack is not empty
+                while curr node not null --> add value to stack and move curr to left child
+                
+                When curr equals Null
+                pop value from stack and assign to curr
+                append curr node value to result Array
+                
+                Since curr has moved one level up --> check if right child is valid
+                
+            resurn result array
+        '''
+        
+        
+        finArr = []
+        stack = []
+        curr = root
+        
+        #while curr or stack not equal None
+        while curr or stack:
+            #while curr not equal None
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+                
+            #once curr equal None
+            curr = stack.pop()
+            finArr.append(curr.val)
+            curr = curr.right
+            
+        return finArr
+            
+
+            
