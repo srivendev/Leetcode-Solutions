@@ -1,0 +1,59 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+        '''
+        Steps:
+            1. Store each of the roots in queue
+            2. Modify one of the trees to become the new tree 
+            3. Call one of the roots at the end to return merged tree
+        '''
+        
+        if not root1:
+            return root2
+        if not root2:
+            return root1
+        
+        q = deque([(root1, root2)])
+        
+        while q:
+            val1, val2 = q.pop()
+            if val1.left and val2.left:
+                q.append((val1.left, val2.left))
+            elif not val1.left:
+                val1.left = val2.left
+            if val1.right and val2.right:
+                q.append((val1.right, val2.right))
+            elif not val1.right:
+                val1.right = val2.right
+            val1.val += val2.val
+                           
+        return root1
+        
+        
+    '''
+    class Solution:
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+        if not root1: return root2
+        if not root2: return root1
+        queue = deque([(root1, root2)])
+        while queue:
+            current_root1, current_root2 = queue.pop()
+            if current_root1.left and current_root2.left: 
+                queue.append((current_root1.left, current_root2.left))
+            elif not current_root1.left: 
+                current_root1.left = current_root2.left
+            if current_root1.right and current_root2.right: 
+                queue.append((current_root1.right, current_root2.right))
+            elif not current_root1.right: 
+                current_root1.right = current_root2.right
+            current_root1.val += current_root2.val
+        return root1
+    '''
+    
+    
