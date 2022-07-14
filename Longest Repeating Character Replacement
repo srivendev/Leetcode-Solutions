@@ -1,0 +1,27 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        l = 0
+        letterHash = {}
+        maxFreqLetter = 0
+        
+        result = 0
+
+        for r in range(len(s)):
+            letterHash[s[r]] = 1 + letterHash.get(s[r], 0)
+            maxFreqLetter = max(maxFreqLetter, letterHash[s[r]])
+            
+            #if not enough window to make replacements
+            if (r - l + 1) - maxFreqLetter > k:
+                letterHash[s[r]] -= 1
+                l+=1
+            
+            
+            result = max(result, r - l +1)
+            
+        return result
+            
+            
+            
+            
+            
+            
