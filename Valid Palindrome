@@ -1,0 +1,27 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        #use two pointer
+        
+        #create a method for checking alphanumberic
+        
+        # make letter lowercase
+        
+        leftP = 0
+        rightP = len(s) - 1
+        
+        while leftP < rightP:
+            #if leftP not alphanum --> plus 1
+            while leftP < rightP and s[leftP].isalnum() != True:
+                leftP += 1
+                
+            #if rightP not alphanum --> minus 1
+            while leftP < rightP and s[rightP].isalnum() != True:
+                rightP -= 1
+            
+            if (s[leftP].lower() != s[rightP].lower() and s[leftP].isalnum() and s[rightP].isalnum()):
+                return False
+            
+            leftP +=1
+            rightP -=1
+            
+        return True
