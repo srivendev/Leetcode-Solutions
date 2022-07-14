@@ -1,0 +1,25 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        l = 0
+        r = len(height) - 1
+        
+        width = 0
+        length = 0
+        
+        maxArea = 0
+        
+        while l < r:
+            width = r - l
+            length = min(height[l], height[r])
+            maxArea = max((width*length), maxArea)
+            if height[l] < height[r]:
+                l+=1
+            elif height[l] > height[r]:
+                r-=1
+            else:
+                #if height[l] and height[r] are equal --> l+=1
+                if height[l] == height[r]:
+                    l+=1
+            
+        return maxArea
+            
