@@ -1,0 +1,26 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        #occurences : num
+        
+        occurences = {}
+        freq = [[] for i in range(len(nums) + 1)]
+        #print(freq)
+        
+        #occurences[num: # occurences]
+        for num in nums:
+            occurences[num] = 1 + occurences.get(num, 0)
+            
+        for val, occ in occurences.items():
+            #value.append(key)
+            freq[occ].append(val)
+        
+        #loop from top to bottom to find k most frequent elements
+        res = []
+        for i in range(len(freq) - 1, 0, -1):
+            for n in freq[i]:
+                
+                res.append(n)
+                if len(res) == k:
+                    return res
+        return
+            
