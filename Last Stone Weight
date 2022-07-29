@@ -1,0 +1,36 @@
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        #python does not have max heap
+        '''
+        no max heap in python --> so first negate every value in array and treat the min heap as a max heap
+        
+        while theres more than 1 value in stones
+        
+        append the difference of x - y
+        
+        add a 0 to the stones, it will only br returned if stones was originally empty
+        
+        '''      
+        
+        stones = [-i for i in stones]
+        heapq.heapify(stones)
+        
+        while len(stones) > 1:
+            x = heapq.heappop(stones)
+            y = heapq.heappop(stones)
+            
+            #if x == y --> do nothing
+            
+            if x != y:
+                heapq.heappush(stones, x - y)
+         
+    
+        stones.append(0)
+                      
+        #the remaining stone    
+        return abs(stones[0])
+            
+            
+            
+        
+        
