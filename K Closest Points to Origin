@@ -1,0 +1,31 @@
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        
+        '''
+        Steps:
+        
+        1. create a minHeap array and store the distnance, x, and y coordinate within it
+        2. put the array in a heap
+        3. pop from heap and add x and y coordinates into a separate array
+        4. return the finArr
+        
+        '''        
+        
+        
+        minHeap = []
+        for coordinates in points:
+            distance = (((coordinates[0])**2) + ((coordinates[1])**2))
+            minHeap.append([distance, coordinates[0], coordinates[1]])
+            
+        heapq.heapify(minHeap)
+        finArr = []
+        
+        for i in range(k):
+            dist, x, y = heapq.heappop(minHeap)
+            finArr.append([x, y])
+        
+        return finArr
+    
+        
+    
+    
