@@ -1,0 +1,13 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        
+        '''
+        If the complement of the current index exists in the hashmap ==> we have found a match
+        '''
+        hashmap = {}
+        
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in hashmap:
+                return [i, hashmap[complement]]
+            hashmap[nums[i]] = i
