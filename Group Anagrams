@@ -1,0 +1,10 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ans = collections.defaultdict(list)
+        #ans = {}
+        
+        for string in strs:
+            print(string)
+            ans["".join((sorted(string)))].append(string)
+            
+        return ans.values()
