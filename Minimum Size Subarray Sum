@@ -1,0 +1,20 @@
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        
+        l = 0
+        runningSum = 0
+        minLength = float('inf')
+        
+        for r in range(len(nums)):
+            runningSum += nums[r]
+            while runningSum >= target:
+                minLength = min(minLength, r - l + 1)
+                runningSum -= nums[l]
+                l += 1
+                
+        if minLength == float('inf'):
+            return 0
+            
+        return minLength 
+                
+            
