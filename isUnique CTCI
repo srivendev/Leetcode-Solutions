@@ -1,0 +1,35 @@
+
+'''
+def isUnique(str):
+    #with additonal data structures
+    stringSet = set()
+
+    for letter in str:
+        if letter not in stringSet:
+            stringSet.add(letter)
+        else:
+            return False
+    return True
+'''
+
+def isUnique(str):
+    #no additional data structures
+
+    #it is not possible for a string of greater than 128(ascii length) to be unique
+    if(len(str) > 128):
+        return False
+
+    #create an array of size 128 with all indexes set to False
+    boolArr = [False for i in range(128)]
+
+    #if a letter is identified, set to true
+
+    for letter in str:
+        val = ord(letter)
+        #if true --> letter exists already and is not unique
+        if boolArr[val]:
+            return False
+        boolArr[val] = True
+    return True
+
+
