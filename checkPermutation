@@ -1,0 +1,11 @@
+
+def checkPermutation(str1, str2):
+    if len(str1) != len(str2):
+        return False
+
+    if sorted(str1) == sorted(str2):
+        return True
+    return False
+
+print(checkPermutation("3563476", "7334566"))
+
