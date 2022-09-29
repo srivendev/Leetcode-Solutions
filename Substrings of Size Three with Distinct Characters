@@ -1,0 +1,11 @@
+class Solution:
+    def countGoodSubstrings(self, s: str) -> int:
+        good_substring_count = 0
+        
+        for idx in range(len(s) - 2):
+            
+            #check if curr_string is unique characters
+            if len(set(s[idx: idx + 3])) == len(s[idx: idx + 3]):
+                good_substring_count +=1
+            
+        return good_substring_count
