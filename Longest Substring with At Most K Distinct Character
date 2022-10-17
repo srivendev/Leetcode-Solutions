@@ -1,0 +1,16 @@
+class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        window, i, j, d = 0, 0, 0, {}
+        
+        while j < len(s):  
+            if s[j] in d: d[s[j]] += 1
+            else: d[s[j]] = 1
+            j += 1
+                
+            if len(d) > k:
+                d[s[i]] -= 1
+                if d[s[i]] == 0: del d[s[i]] 
+                i += 1
+            window = max(window, j - i) 
+            
+        return window
